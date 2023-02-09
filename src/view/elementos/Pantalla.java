@@ -1,14 +1,26 @@
 package view.elementos;
 
-import javax.swing.JTextArea;
+import java.awt.Dimension;
 
-public class Pantalla extends JTextArea {
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+public class Pantalla extends JPanel {
+	
+	private String texto = "Bienvenido a tu banco";
 	
 	public Pantalla() {
-	
-		this.setText("TOOL_TIP_TEXT_KEY");
-		//this.is
 		
+		JTextField areaDisplayBotonera = new JTextField();
+		areaDisplayBotonera.setEditable(false);
+		areaDisplayBotonera.setPreferredSize(new Dimension(900, 300));
+		
+		areaDisplayBotonera.setText(this.texto);
+		areaDisplayBotonera.setColumns(10);
+		
+		this.add(areaDisplayBotonera);
+	
 	}
 
 }
