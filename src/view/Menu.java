@@ -4,6 +4,9 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import view.admin.AdminCuentas;
+import view.admin.AdminUsuarios;
+
 public class Menu extends JMenuBar {
 	
 	private JMenu menu1;
@@ -15,12 +18,12 @@ public class Menu extends JMenuBar {
         
         JMenuItem mi1=new JMenuItem("Usuarios");
         mi1.addActionListener( e -> {
-        	System.out.println(e);
+        	new AdminUsuarios();
         });
         menu1.add(mi1);
         mi2=new JMenuItem("Cuentas");
         mi2.addActionListener( e -> {
-        	System.out.println(e);
+        	new AdminCuentas();
         });
         menu1.add(mi2);
         

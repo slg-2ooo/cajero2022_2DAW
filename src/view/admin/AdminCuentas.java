@@ -2,25 +2,19 @@ package view.admin;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-import java.awt.Insets;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import view.ColumnaDeposito;
-import view.ColumnaDisplay;
-import view.Menu;
 import view.elementos.Desplegable;
 import view.elementos.Lista;
 
-public class AdminUsuarios extends JFrame {
-	
-    public AdminUsuarios() {
+public class AdminCuentas extends JFrame {
+
+	public AdminCuentas() {
     	
-    	setTitle("Usuarios");
+    	setTitle("Cuentas");
 
     	this.setLayout(new GridLayout(0, 1));
     	

@@ -7,17 +7,19 @@ import java.awt.Insets;
 import javax.swing.JFrame;
 
 
-public class Ventana {
+public class Ventana extends JFrame {
 
-	JFrame ventana = new JFrame("Cajero");
 	private final GridBagConstraints constraints = new GridBagConstraints();
 	
     public Ventana() {
     	
-    	Menu menu = new Menu();
-    	ventana.setJMenuBar(menu);
 
-    	ventana.setLayout(new GridBagLayout());
+    	this.setTitle("Cajero");
+    	
+    	Menu menu = new Menu();
+    	this.setJMenuBar(menu);
+
+    	this.setLayout(new GridBagLayout());
 
 
     	ColumnaDisplay columnaDisplay = new ColumnaDisplay();
@@ -30,18 +32,18 @@ public class Ventana {
         
         constraints.gridx = 0;
         constraints.gridy = 0;
-        ventana.getContentPane().add(columnaDisplay, constraints);
+        this.getContentPane().add(columnaDisplay, constraints);
         constraints.gridx = 2;
         constraints.gridy = 0;
-        ventana.getContentPane().add(columnaDeposito, constraints);
+        this.getContentPane().add(columnaDeposito, constraints);
 
         
-        ventana.setPreferredSize(new Dimension(1525,865));
-        ventana.setResizable(false);
-        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ventana.pack();
-        ventana.setLocationRelativeTo(null);
-        ventana.setVisible(true);
+        this.setPreferredSize(new Dimension(1525,865));
+        this.setResizable(false);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.pack();
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
         //ventana.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		
 	}
