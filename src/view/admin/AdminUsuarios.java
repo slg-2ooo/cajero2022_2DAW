@@ -10,7 +10,10 @@ import java.awt.Insets;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 import view.ColumnaDeposito;
 import view.ColumnaDisplay;
@@ -35,15 +38,30 @@ public class AdminUsuarios extends JFrame {
     	panelCreacion.setBorder(BorderFactory.createTitledBorder("Crear usuario"));
     	panelCreacion.setLayout(new FlowLayout());
 
-			
-		panelCreacion.add(new Lista());
-		panelCreacion.add(new Desplegable());
+    	
+    	JLabel labelNombreCreacion = new JLabel("Nombre");
+    	JTextField nombreCreacion = new JTextField(20);
+    	JLabel labelApellidoCreacion = new JLabel("Apellidos");
+    	JTextField apellidosCreacion = new JTextField(20);
+    	JLabel labelContrasennaCreacion = new JLabel("Contraseña");
+    	JPasswordField contrasennaCreacion = new JPasswordField(10);
+		
+    	panelCreacion.add(labelNombreCreacion);
+		panelCreacion.add(nombreCreacion);
+		panelCreacion.add(labelApellidoCreacion);
+		panelCreacion.add(apellidosCreacion);
+		panelCreacion.add(labelContrasennaCreacion);
+		panelCreacion.add(contrasennaCreacion);
+
 		
 		JButton botonCreacion = new JButton("Crear");
 		botonCreacion.addActionListener( e -> {
 			
 			
 			System.out.println(e);
+			System.out.println(nombreCreacion.getText());
+			System.out.println(apellidosCreacion.getText());
+			System.out.println(contrasennaCreacion.getPassword());
 			
 			
 		});
@@ -57,16 +75,36 @@ public class AdminUsuarios extends JFrame {
 		panelEdicion.setBorder(BorderFactory.createTitledBorder("Editar usuario"));
 		panelEdicion.setLayout(new FlowLayout());
 
-		panelEdicion.add(new Lista());
-		panelEdicion.add(new Desplegable());
-		panelEdicion.add(new Lista());
-		panelEdicion.add(new Desplegable());
+		
+		Lista listaEdicion = new Lista();
+    	Desplegable desplegableEdicion = new Desplegable();
+    	
+    	JLabel labelNombreEdicion = new JLabel("Nombre");
+    	JTextField nombreEdicion = new JTextField(20);
+    	JLabel labelApellidoEdicion = new JLabel("Apellidos");
+    	JTextField apellidosEdicion = new JTextField(20);
+    	JLabel labelContrasennaEdicion = new JLabel("Contraseña");
+    	JPasswordField contrasennaEdicion = new JPasswordField(10);
+		
+		
+    	panelEdicion.add(listaEdicion);
+    	panelEdicion.add(labelNombreEdicion);
+    	panelEdicion.add(nombreEdicion);
+    	panelEdicion.add(labelApellidoEdicion);
+    	panelEdicion.add(apellidosEdicion);
+    	panelEdicion.add(labelContrasennaEdicion);
+    	panelEdicion.add(contrasennaEdicion);
+		
 		
 		JButton botonEdicion = new JButton("Editar");
 		botonEdicion.addActionListener( e -> {
 			
 			
 			System.out.println(e);
+			System.out.println(listaEdicion.getValor());
+			System.out.println(nombreEdicion.getText());
+			System.out.println(apellidosEdicion.getText());
+			System.out.println(contrasennaEdicion.getPassword());
 			
 			
 		});
@@ -80,19 +118,30 @@ public class AdminUsuarios extends JFrame {
 		panelBorrado.setBorder(BorderFactory.createTitledBorder("Eliminar usuarios"));
 		panelBorrado.setLayout(new FlowLayout());
 
-		panelBorrado.add(new Lista());
-		panelBorrado.add(new Desplegable());
+		Lista listaBorrado = new Lista();
+    	Desplegable desplegableBorrado = new Desplegable();
+    	
+    	JTextField nombreBorrado = new JTextField(20);
+    	nombreBorrado.setEditable(false);
+    	JTextField apellidosBorrado = new JTextField(20);
+    	apellidosBorrado.setEditable(false);
+		
+    	panelBorrado.add(listaBorrado);
+    	panelBorrado.add(nombreBorrado);
+    	panelBorrado.add(apellidosBorrado);
 		
 		JButton botonBorrado = new JButton("Eliminar");
 		botonBorrado.addActionListener( e -> {
 			
-			
+
 			System.out.println(e);
+			System.out.println(listaBorrado.getValor());
+			System.out.println(nombreBorrado.getText());
+			System.out.println(apellidosBorrado.getText());
 			
 			
 		});
 		panelBorrado.add(botonBorrado);
-
 		
 		/*
     	 * Anadir paneles a la vista de administracion de usuarios

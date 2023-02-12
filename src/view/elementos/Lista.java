@@ -1,15 +1,21 @@
 package view.elementos;
 
+import java.awt.Dimension;
+
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 
-public class Lista extends JList {
+public class Lista extends JPanel {
 
+	private JList lista = new JList();
+	private JScrollPane scroll = new JScrollPane();
 	
 	public Lista() {
 		
-		String[] info = {"Pato", "Loro", "Perro", "Cuervo"};
+		String[] info = {"Pato", "Loro", "Perro", "Cuervo", "Pato", "Loro", "Perro", "Pato", "Loro", "Perro", "Pato", "Loro", "Perro", "Pato", "Loro", "Perro"};
 		
 		DefaultListModel<String> modelo = new DefaultListModel<>();  
 		
@@ -17,18 +23,19 @@ public class Lista extends JList {
 			modelo.addElement(info[iintex]); 
 		}
 
-		this.setModel(modelo);
-
-		/* El valor de la propiedad model de JList es un objeto que proporciona una visión de sólo lectura del vector info[].
-		El método getModel() permite recoger ese modelo en forma de Vector de objetos, y utilizarlo con los métodos de la clase
-		Vector, como getElementAt(i), que proporciona el elemento de la posición i del Vector.  */
-		/*
-		for (int i = 0; i < listaDatos.getModel().getSize(); i++) {
-		    System.out.println(listaDatos.getModel().getElementAt(i));
-		}
-		*/
+		lista.setModel(modelo);
+		scroll.setViewportView(lista);
+		lista.setLayoutOrientation(JList.VERTICAL);
+		
+		
+		this.add(lista);
+		this.setPreferredSize(new Dimension(100,150));
 		
 	  }
+	
+	public Object getValor() {
+		return lista.getSelectedValue();
+	}
 	
 	
 }
