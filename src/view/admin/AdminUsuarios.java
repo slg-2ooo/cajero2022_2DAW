@@ -7,6 +7,8 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
 
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -20,40 +22,83 @@ public class AdminUsuarios extends JFrame {
 	
     public AdminUsuarios() {
     	
-    	setTitle("Usuarios");
-
+    	this.setTitle("Usuarios");
     	this.setLayout(new GridLayout(0, 1));
     	
-    	
     	JPanel panel = new JPanel();
-    	panel.setLayout(new GridLayout(2, 1));
+    	panel.setLayout(new GridLayout(3, 1));
     	
-    	
+    	/*
+    	 * Panel de creacion de usuarios
+    	 */
     	JPanel panelCreacion = new JPanel();
+    	panelCreacion.setBorder(BorderFactory.createTitledBorder("Crear usuario"));
     	panelCreacion.setLayout(new FlowLayout());
-		for (int bindex = 0; bindex < 1; bindex++) {
+
 			
-			panelCreacion.add(new Lista());
-			panelCreacion.add(new Desplegable());
-			panelCreacion.add(new Lista());
-			panelCreacion.add(new Desplegable());
-			panelCreacion.add(new Lista());
-			panelCreacion.add(new Desplegable());
+		panelCreacion.add(new Lista());
+		panelCreacion.add(new Desplegable());
+		
+		JButton botonCreacion = new JButton("Crear");
+		botonCreacion.addActionListener( e -> {
 			
-		}
+			
+			System.out.println(e);
+			
+			
+		});
+		panelCreacion.add(botonCreacion);
+
+			
+		/*
+    	 * Panel de edicion de usuarios
+    	 */
+		JPanel panelEdicion = new JPanel();
+		panelEdicion.setBorder(BorderFactory.createTitledBorder("Editar usuario"));
+		panelEdicion.setLayout(new FlowLayout());
+
+		panelEdicion.add(new Lista());
+		panelEdicion.add(new Desplegable());
+		panelEdicion.add(new Lista());
+		panelEdicion.add(new Desplegable());
 		
+		JButton botonEdicion = new JButton("Editar");
+		botonEdicion.addActionListener( e -> {
+			
+			
+			System.out.println(e);
+			
+			
+		});
+		panelEdicion.add(botonEdicion);
+
 		
+		/*
+    	 * Panel de eliminacion de usuarios
+    	 */
 		JPanel panelBorrado = new JPanel();
+		panelBorrado.setBorder(BorderFactory.createTitledBorder("Eliminar usuarios"));
 		panelBorrado.setLayout(new FlowLayout());
-		for (int bindex = 0; bindex < 1; bindex++) {
-			
-			panelBorrado.add(new Lista());
-			panelBorrado.add(new Desplegable());
-			
-		}
+
+		panelBorrado.add(new Lista());
+		panelBorrado.add(new Desplegable());
 		
+		JButton botonBorrado = new JButton("Eliminar");
+		botonBorrado.addActionListener( e -> {
+			
+			
+			System.out.println(e);
+			
+			
+		});
+		panelBorrado.add(botonBorrado);
+
 		
+		/*
+    	 * Anadir paneles a la vista de administracion de usuarios
+    	 */
 		panel.add(panelCreacion);
+		panel.add(panelEdicion);
 		panel.add(panelBorrado);
 
         

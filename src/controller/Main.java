@@ -1,5 +1,8 @@
 package controller;
 
+import java.sql.Connection;
+
+import model.Conexion;
 import view.Ventana;
 
 public class Main {
@@ -8,7 +11,9 @@ public class Main {
 
 		System.out.println("Cajero iniciado");
 		
-		new Ventana();
+		//new Ventana();
+		Connection conexionDB = new Conexion().Conexion("usuarios");
+		System.out.println(conexionDB);
 		
 	}
 
