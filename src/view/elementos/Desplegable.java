@@ -1,9 +1,16 @@
 package view.elementos;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 import javax.swing.JComboBox;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
-public class Desplegable extends JComboBox {
+public class Desplegable extends JPanel {
+	
+	private JComboBox desplegable = new JComboBox();
+	private JScrollPane scroll = new JScrollPane();
 
 	public Desplegable() {
 		
@@ -15,8 +22,26 @@ public class Desplegable extends JComboBox {
 			modelo.addElement(catalogo[iitems]);
 		}
 		
-		this.setModel(modelo);
+		desplegable.setModel(modelo);
+		this.add(desplegable);
 		//JComboBox<String> coches = new JComboBox<String>(catalogo);
+		
+	}
+	
+	
+	public Object getValor() {
+		return desplegable.getSelectedItem();
+	}
+	
+	public void setModel(String[] lista) {
+		
+		DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<>();  
+		
+		for (int iintex = 0; iintex < lista.length; iintex++) {
+			modelo.addElement(lista[iintex]); 
+		}
+		
+		this.desplegable.setModel(modelo);
 		
 	}
 	

@@ -6,7 +6,7 @@ public class Consultas {
 
 	//LISTAR
 	public static final String MOSTRAR_USUARIOS="SELECT * FROM usuarios";
-	public static final String MOSTRAR_CUENTAS="SELECT * FROM cuentas";
+	public static final String MOSTRAR_CUENTAS="SELECT * FROM cuentas WHERE idUsuario=?";
 	public static final String MOSTRAR_MOVIMIENTOS="SELECT * FROM movimientos WHERE idCuenta=?";
 
 	

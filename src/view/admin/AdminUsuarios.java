@@ -149,8 +149,6 @@ public class AdminUsuarios extends JFrame {
 
 		Lista listaBorrado = new Lista();
 		controlerUsuarios.listarUsuario(listaBorrado);
-		
-    	Desplegable desplegableBorrado = new Desplegable();
     	
     	JTextField nombreBorrado = new JTextField(20);
     	nombreBorrado.setEditable(false);

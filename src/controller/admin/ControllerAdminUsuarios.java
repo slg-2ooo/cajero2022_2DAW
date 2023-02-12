@@ -45,7 +45,7 @@ public class ControllerAdminUsuarios {
 		
 	}
 	
-	public int getIdDeListaDeNombres(String nombreConId) {
+	public static int getIdDeListaDeNombres(String nombreConId) {
 		
 		String [] splitNombre = nombreConId.split("[(]");
 		splitNombre = splitNombre[1].split("[)]");

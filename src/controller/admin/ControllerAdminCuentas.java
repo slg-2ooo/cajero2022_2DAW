@@ -8,24 +8,27 @@ import javax.swing.JFrame;
 
 import model.Cuentas;
 import model.Usuarios;
+import view.admin.AdminCuentas;
 import view.admin.AdminUsuarios;
+import view.elementos.Desplegable;
 import view.elementos.Lista;
 
 public class ControllerAdminCuentas {
 	
-	private JFrame ventanaAdministracionUsuarios;
+	private JFrame ventanaAdministracionCuentas;
 
 	public ControllerAdminCuentas(JFrame frame) {
-		
-		this.ventanaAdministracionUsuarios = frame;
+
+		this.ventanaAdministracionCuentas = frame;
 		
 	}
 	
-	public void listarCuentas(Lista lista) {
+	
+	public void listarCuentas(Desplegable lista, int idUsuario) {
 		Cuentas cuentas = new Cuentas();
 		ArrayList<String> itemsLista = new ArrayList<String>();
 		
-		ArrayList<HashMap<?, ?>> listaCuentas = cuentas.listarCuentas();
+		ArrayList<HashMap<?, ?>> listaCuentas = cuentas.listarCuentas(idUsuario);
 		
 		for (Iterator iterator = listaCuentas.iterator(); iterator.hasNext();) {
 			HashMap<String, Object> type = (HashMap<String, Object>) iterator.next();
@@ -39,49 +42,23 @@ public class ControllerAdminCuentas {
 		lista.setModel(info);
 	}
 	
-	public HashMap<String, Object> buscarUsuario(int idUsuario) {
+	
+	public void crearCuenta(int idUsuario, int saldo) {
 		
-		Usuarios usuarios = new Usuarios();
-		return usuarios.buscarUsario(idUsuario);
+		Cuentas cuentas = new Cuentas();
+		cuentas.insertarCuenta(idUsuario, saldo);
+		
+		ventanaAdministracionCuentas.dispose();
+		new AdminCuentas();
 		
 	}
 	
-	public int getIdDeListaDeNombres(String nombreConId) {
+	public void eliminarCuenta(int idCuenta) {
 		
-		String [] splitNombre = nombreConId.split("[(]");
-		splitNombre = splitNombre[1].split("[)]");
+		Cuentas cuentas = new Cuentas();
+		cuentas.borrarCuenta(idCuenta);
 		
-		String idUsuario = splitNombre[0];
-		return Integer.parseInt(idUsuario);
-	}
-	
-	public void editarUsuario(int idUsuario, String nombre, String apellidos, char[] contrasenna) {
-		
-		Usuarios usuarios = new Usuarios();
-		usuarios.editarUsario(idUsuario, nombre, apellidos, contrasenna);
-		
-		ventanaAdministracionUsuarios.dispose();
-		new AdminUsuarios();
-		
-	}
-	
-	public void crearUsuario(String nombre, String apellidos, char[] contrasenna) {
-		
-		Usuarios usuarios = new Usuarios();
-		usuarios.insertarUsario(nombre, apellidos, contrasenna);
-		
-		ventanaAdministracionUsuarios.dispose();
-		new AdminUsuarios();
-		
-	}
-	
-	public void eliminarUsuario(int idUsuario) {
-		
-		Usuarios usuarios = new Usuarios();
-		usuarios.borrarUsario(idUsuario);
-		
-		ventanaAdministracionUsuarios.dispose();
-		new AdminUsuarios();
+		ventanaAdministracionCuentas.dispose();
 		
 	}
 	

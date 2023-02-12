@@ -19,7 +19,7 @@ public class Cuentas {
 	/*
 	 * Mostrar la lista de cuentas
 	 */
-	public ArrayList< HashMap<?, ?> > listarCuentas() {
+	public ArrayList< HashMap<?, ?> > listarCuentas(int idUsuario) {
 		
 		Conexion conexionDB = new Conexion();
 		ArrayList< HashMap<?, ?> > result = null;
@@ -31,6 +31,7 @@ public class Cuentas {
                     .prepareStatement(
                             this.consultas.MOSTRAR_CUENTAS
                     );
+            preparedStatement.setInt(1, idUsuario);
             ResultSet rs = preparedStatement.executeQuery();
             while(rs.next())
             {
@@ -96,6 +97,7 @@ public class Cuentas {
             
         } catch (SQLException e) {
         	e.getStackTrace();
+        	System.out.println(e);
         } finally { conexionDB.cerrarConexion(); }
 		
 	}

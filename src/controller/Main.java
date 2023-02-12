@@ -1,14 +1,17 @@
 package controller;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.regex.Pattern;
 
 import model.Conexion;
+import model.Cuentas;
 import model.Usuarios;
 import view.Ventana;
 import view.admin.AdminCuentas;
+import view.admin.AdminEliminarCuenta;
 import view.admin.AdminUsuarios;
 
 public class Main {
@@ -19,7 +22,9 @@ public class Main {
 		
 		new Ventana();
 		//new AdminUsuarios();
-		new AdminCuentas();
+		//new AdminCuentas();
+		//new AdminEliminarCuenta();
+		
 		
 		/*
 		String nombre = "sefefsef";

@@ -6,6 +6,8 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -15,6 +17,8 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import controller.admin.ControllerAdminCuentas;
+import controller.admin.ControllerAdminUsuarios;
 import view.ColumnaDeposito;
 import view.ColumnaDisplay;
 import view.Menu;
@@ -22,6 +26,9 @@ import view.elementos.Desplegable;
 import view.elementos.Lista;
 
 public class AdminCuentas extends JFrame {
+	
+	private ControllerAdminCuentas controlerCuentas = new ControllerAdminCuentas(this);
+	private ControllerAdminUsuarios controlerUsuarios = new ControllerAdminUsuarios(this);
 	
     public AdminCuentas() {
     	
@@ -41,6 +48,7 @@ public class AdminCuentas extends JFrame {
   
     	JLabel labelUsuarioCreacion = new JLabel("Selecciona Usuario");
     	Lista listaUsuariosCreacion = new Lista();
+    	controlerUsuarios.listarUsuario(listaUsuariosCreacion);
     	JLabel labelSaldoCreacion = new JLabel("Saldo");
     	JTextField saldoCreacion = new JTextField(20);
 		
@@ -57,6 +65,9 @@ public class AdminCuentas extends JFrame {
 			System.out.println(e);
 			System.out.println(listaUsuariosCreacion.getValor());
 			System.out.println(saldoCreacion.getText());
+			int idUsuario = controlerUsuarios.getIdDeListaDeNombres((String)listaUsuariosCreacion.getValor());
+			int saldo = Integer.parseInt(saldoCreacion.getText());
+			controlerCuentas.crearCuenta(idUsuario, saldo);
 			
 			
 		});
@@ -72,27 +83,20 @@ public class AdminCuentas extends JFrame {
 
 		JLabel labelUsuarioBorrado = new JLabel("Selección Usuario");
     	Lista listaUsuariosBorrado = new Lista();
-    	JLabel labelCuentaBorrado = new JLabel("Selección Cuenta");
-    	Desplegable desplegableCuentaBorrado = new Desplegable();
+    	
+    	controlerUsuarios.listarUsuario(listaUsuariosBorrado);
+    	
     	JLabel labelSaldoBorrado = new JLabel("Saldo");
     	JTextField saldoBorrado = new JTextField(20);
     	saldoBorrado.setEditable(false);
 		
     	panelBorrado.add(labelUsuarioBorrado);
     	panelBorrado.add(listaUsuariosBorrado);
-    	panelBorrado.add(labelCuentaBorrado);
-    	panelBorrado.add(desplegableCuentaBorrado);
-    	panelBorrado.add(labelSaldoBorrado);
-    	panelBorrado.add(saldoBorrado);
 		
-		JButton botonBorrado = new JButton("Eliminar");
+		JButton botonBorrado = new JButton("Seleccionar Usuario");
 		botonBorrado.addActionListener( e -> {
 			
-			
-			System.out.println(e);
-			System.out.println(listaUsuariosBorrado.getValor());
-			System.out.println(desplegableCuentaBorrado.getSelectedItem());
-			System.out.println(saldoBorrado.getText());
+			new AdminEliminarCuenta(this, listaUsuariosBorrado.getValor());
 			
 			
 		});
