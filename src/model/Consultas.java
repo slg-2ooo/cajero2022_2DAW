@@ -19,11 +19,11 @@ public class Consultas {
 	public static final String BORRAR_CUENTA="DELETE FROM cuentas WHERE idCuenta=?";
 	
 	//INSERCION
-	public static final String INSERTAR_USUARIO="INSERT INTO usuarios(idUsuario, nombre, apellidos, contrasenna) VALUES (?,?,?,?)";
-	public static final String INSERTAR_CUENTA="INSERT INTO cuentas(idCuenta, idUsuario, saldo) VALUES (?,?,?)";
+	public static final String INSERTAR_USUARIO="INSERT INTO usuarios (nombre, apellidos, contrasenna) VALUES (?,?,?)";
+	public static final String INSERTAR_CUENTA="INSERT INTO cuentas(idUsuario, saldo) VALUES (?,?)";
 	
 	//Editar
-	public static final String EDITAR_USUARIO="UPDATE `usuarios` SET `nombre` = '?', `apellidos` = '?', `contrasenna` = '?' WHERE `usuarios`.`idUsuario` = ?";
+	public static final String EDITAR_USUARIO="UPDATE usuarios SET nombre = ?, apellidos = ?, contrasenna = ? WHERE usuarios.idUsuario = ?";
 	public static final String EDITAR_CUENTA="UPDATE `cuentas` SET `saldo` = '?' WHERE `cuentas`.`idCuenta` = ? and `cuentas`.`idUsuario` = ?";
 	
 }

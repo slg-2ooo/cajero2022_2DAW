@@ -6,6 +6,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
+import java.util.HashMap;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -15,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import controller.admin.ControllerAdminUsuarios;
 import view.ColumnaDeposito;
 import view.ColumnaDisplay;
 import view.Menu;
@@ -22,6 +24,8 @@ import view.elementos.Desplegable;
 import view.elementos.Lista;
 
 public class AdminUsuarios extends JFrame {
+	
+	private ControllerAdminUsuarios controlerUsuarios = new ControllerAdminUsuarios(this);
 	
     public AdminUsuarios() {
     	
@@ -62,6 +66,7 @@ public class AdminUsuarios extends JFrame {
 			System.out.println(nombreCreacion.getText());
 			System.out.println(apellidosCreacion.getText());
 			System.out.println(contrasennaCreacion.getPassword());
+			controlerUsuarios.crearUsuario(nombreCreacion.getText(), apellidosCreacion.getText(), contrasennaCreacion.getPassword());
 			
 			
 		});
@@ -77,7 +82,7 @@ public class AdminUsuarios extends JFrame {
 
 		
 		Lista listaEdicion = new Lista();
-    	Desplegable desplegableEdicion = new Desplegable();
+		controlerUsuarios.listarUsuario(listaEdicion);
     	
     	JLabel labelNombreEdicion = new JLabel("Nombre");
     	JTextField nombreEdicion = new JTextField(20);
@@ -104,7 +109,31 @@ public class AdminUsuarios extends JFrame {
 			System.out.println(listaEdicion.getValor());
 			System.out.println(nombreEdicion.getText());
 			System.out.println(apellidosEdicion.getText());
-			System.out.println(contrasennaEdicion.getPassword());
+			System.out.println(contrasennaEdicion.getText());
+			
+			int idUsuario = controlerUsuarios.getIdDeListaDeNombres((String)listaEdicion.getValor());
+			String nombre = nombreEdicion.getText();
+			String apellidos = apellidosEdicion.getText();
+			char[] contrasenna = contrasennaEdicion.getPassword();
+			
+			System.out.println(idUsuario);
+			System.out.println(nombre);
+			System.out.println(apellidos);
+			System.out.println(contrasenna);
+			
+			HashMap<String, Object> usuario = controlerUsuarios.buscarUsuario( controlerUsuarios.getIdDeListaDeNombres((String)listaEdicion.getValor()) );
+			if (nombre.equals("")) {
+				nombre = (String)usuario.get("usuario");
+			}
+			if (apellidos.equals("")) {
+				apellidos = (String)usuario.get("apellidos");
+			}
+			if (contrasenna.length == 0) {
+				String cadena = (String)usuario.get("contrasenna");
+				contrasenna = cadena.toCharArray();
+			}
+			
+			controlerUsuarios.editarUsuario(idUsuario, nombre, apellidos, contrasenna);
 			
 			
 		});
@@ -119,6 +148,8 @@ public class AdminUsuarios extends JFrame {
 		panelBorrado.setLayout(new FlowLayout());
 
 		Lista listaBorrado = new Lista();
+		controlerUsuarios.listarUsuario(listaBorrado);
+		
     	Desplegable desplegableBorrado = new Desplegable();
     	
     	JTextField nombreBorrado = new JTextField(20);
@@ -138,6 +169,11 @@ public class AdminUsuarios extends JFrame {
 			System.out.println(listaBorrado.getValor());
 			System.out.println(nombreBorrado.getText());
 			System.out.println(apellidosBorrado.getText());
+			HashMap<String, Object> usuario = controlerUsuarios.buscarUsuario( controlerUsuarios.getIdDeListaDeNombres((String)listaBorrado.getValor()) );
+			
+			nombreBorrado.setText((String)usuario.get("nombre"));
+			apellidosBorrado.setText((String)usuario.get("apellidos"));
+			controlerUsuarios.eliminarUsuario( controlerUsuarios.getIdDeListaDeNombres((String)listaBorrado.getValor()) );
 			
 			
 		});

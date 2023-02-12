@@ -81,7 +81,7 @@ public class Cuentas {
 	/*
 	 * Añadir una cuenta nueva
 	 */
-	public void insertarCuenta(int idCuenta, int idUsuario, int saldo) {
+	public void insertarCuenta(int idUsuario, int saldo) {
 		
 		Conexion conexionDB = new Conexion();
         try {
@@ -90,9 +90,8 @@ public class Cuentas {
                     .prepareStatement(
                     		this.consultas.INSERTAR_CUENTA
                     );
-            preparedStatement.setInt(1, idCuenta);
-            preparedStatement.setInt(2, idUsuario);
-            preparedStatement.setInt(3, saldo);
+            preparedStatement.setInt(1, idUsuario);
+            preparedStatement.setInt(2, saldo);
             preparedStatement.execute();
             
         } catch (SQLException e) {

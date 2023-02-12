@@ -37,5 +37,17 @@ public class Lista extends JPanel {
 		return lista.getSelectedValue();
 	}
 	
+	public void setModel(String[] lista) {
+		
+		DefaultListModel<String> modelo = new DefaultListModel<>();  
+		
+		for (int iintex = 0; iintex < lista.length; iintex++) {
+			modelo.addElement(lista[iintex]); 
+		}
+		
+		this.lista.setModel(modelo);
+		
+	}
+	
 	
 }

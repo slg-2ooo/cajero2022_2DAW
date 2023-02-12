@@ -3,6 +3,7 @@ package controller;
 import java.sql.Connection;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.regex.Pattern;
 
 import model.Conexion;
 import model.Usuarios;
@@ -18,7 +19,15 @@ public class Main {
 		
 		new Ventana();
 		//new AdminUsuarios();
-		//new AdminCuentas();
+		new AdminCuentas();
+		
+		/*
+		String nombre = "sefefsef";
+		String apellidos = "piopiop";
+		char[] contrasenna = {'r', 'e', 'h', 'd', 'ñ'};
+		Usuarios usuarios = new Usuarios();
+		usuarios.insertarUsario(nombre, apellidos, contrasenna);
+		*/
 		
 		/*
 		Usuarios users = new Usuarios();
@@ -30,8 +39,6 @@ public class Main {
 			
 		}
 		
-		
-
 		System.out.println(users.buscarUsario(1));
 		*/
 		/*

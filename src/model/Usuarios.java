@@ -83,47 +83,51 @@ public class Usuarios {
 	/*
 	 * Añadir un usuario nuevo
 	 */
-	public void insertarUsario(int idUsuario, String nombre, String apellidos, String contrasenna) {
+	public void insertarUsario(String nombre, String apellidos, char[] contrasenna) {
 		
 		Conexion conexionDB = new Conexion();
+
         try {
         	
+        	String stringContrasenna = new String(contrasenna);
             PreparedStatement preparedStatement = conexionDB.getConexion()
                     .prepareStatement(
                     		this.consultas.INSERTAR_USUARIO
                     );
-            preparedStatement.setInt(1, idUsuario);
-            preparedStatement.setString(2, nombre);
-            preparedStatement.setString(3, apellidos);
-            preparedStatement.setString(4, contrasenna);
-            preparedStatement.execute();
+            preparedStatement.setString(1, nombre);
+            preparedStatement.setString(2, apellidos);
+            preparedStatement.setString(3, stringContrasenna);
+            System.out.println(preparedStatement);
+            preparedStatement.executeUpdate();
+            System.out.println(preparedStatement);
             
         } catch (SQLException e) {
-        	e.getStackTrace();
+        	System.out.println(e);
         } finally { conexionDB.cerrarConexion(); }
 		
 	}
 	/*
 	 * Editar un usuario a partir de su id
 	 */
-	public void editarUsario(int idUsuario, String nombre, String apellidos, String contrasenna) {
+	public void editarUsario(int idUsuario, String nombre, String apellidos, char[] contrasenna) {
 		
 		Conexion conexionDB = new Conexion();
         try {
         	
+        	String stringContrasenna = new String(contrasenna);
             PreparedStatement preparedStatement = conexionDB.getConexion()
                     .prepareStatement(
                     		this.consultas.EDITAR_USUARIO
                     );
             preparedStatement.setString(1, nombre);
             preparedStatement.setString(2, apellidos);
-            preparedStatement.setString(3, contrasenna);
+            preparedStatement.setString(3, stringContrasenna);
             
             preparedStatement.setInt(4, idUsuario);
-            preparedStatement.execute();
+            preparedStatement.executeUpdate();
             
         } catch (SQLException e) {
-        	e.getStackTrace();
+        	System.out.println(e);
         } finally { conexionDB.cerrarConexion(); }
 		
 	}
