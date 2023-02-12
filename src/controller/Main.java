@@ -1,8 +1,11 @@
 package controller;
 
 import java.sql.Connection;
+import java.util.HashMap;
+import java.util.Iterator;
 
 import model.Conexion;
+import model.Usuarios;
 import view.Ventana;
 
 public class Main {
@@ -12,8 +15,27 @@ public class Main {
 		System.out.println("Cajero iniciado");
 		
 		//new Ventana();
-		Connection conexionDB = new Conexion().Conexion("usuarios");
-		System.out.println(conexionDB);
+		Usuarios users = new Usuarios();
+		
+		for (Iterator iterator = users.listarUsarios().iterator(); iterator.hasNext();) {
+			HashMap<String, Object> type = (HashMap<String, Object>) iterator.next();
+
+			System.out.println(type);
+			
+		}
+		
+		
+
+		System.out.println(users.buscarUsario(1));
+		
+		/*
+		for (Iterator iterator = users.listarUsarios().iterator(); iterator.hasNext();) {
+			HashMap<String, Object> type = (HashMap<String, Object>) iterator.next();
+
+			System.out.println(type);
+			
+		}
+		*/
 		
 	}
 
